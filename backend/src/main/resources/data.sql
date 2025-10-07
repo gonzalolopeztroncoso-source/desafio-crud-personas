@@ -1,0 +1,2 @@
+INSERT INTO persona (rut, nombre, apellido, fecha_nacimiento, direccion_calle, direccion_comuna, direccion_region)
+VALUES ('12.345.678-9', 'Gonzalo', 'Lopez', '1990-08-20', 'Berta Correa 1994', 'Huechuraba', 'Metropolitana');
