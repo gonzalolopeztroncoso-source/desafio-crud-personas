@@ -10,7 +10,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/personas")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = {
+        "http://localhost:5173",
+        "https://desafio-crud-personas.vercel.app"
+})
 public class PersonaController {
     private final PersonaService service;
 
