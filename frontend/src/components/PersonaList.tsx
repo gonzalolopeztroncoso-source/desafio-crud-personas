@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { getPersonas, deletePersona } from "../api/personasApi";
+import "../styles/list.css";
+import { toast } from 'react-toastify';
+import Swal from "sweetalert2";
 
 interface PersonaListProps {
   reload: boolean;
@@ -22,22 +25,46 @@ const PersonaList = ({ reload, onEdit }: PersonaListProps) => {
   }, [reload]);
 
   const handleDelete = async (id: number) => {
-    if (window.confirm("¿Seguro que deseas eliminar esta persona?")) {
+    const result = await Swal.fire({
+      title: "¿Seguro que deseas eliminar esta persona?",
+      text: "Esta acción no se puede deshacer",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+      reverseButtons: true,
+    });
+
+    if (result.isConfirmed) {
       try {
         await deletePersona(id);
         setPersonas(personas.filter((p) => p.id !== id));
-        alert("Persona eliminada correctamente");
+
+        Swal.fire({
+          icon: "success",
+          title: "Eliminado",
+          text: "La persona fue eliminada correctamente",
+          timer: 1800,
+          showConfirmButton: false,
+        });
       } catch (error) {
         console.error("Error al eliminar persona:", error);
-        alert("Error al eliminar persona");
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "No se pudo eliminar la persona. Intenta nuevamente.",
+        });
       }
     }
   };
 
   return (
-    <div>
+    <div className="persona-list-container">
       <h3>Lista de Personas</h3>
-      <table className="table table-striped">
+
+      <table className="tabla-personas">
         <thead>
           <tr>
             <th>RUT</th>
@@ -56,24 +83,23 @@ const PersonaList = ({ reload, onEdit }: PersonaListProps) => {
                 <td>{p.apellido}</td>
                 <td>{p.edad ?? "-"}</td>
                 <td>
-                  <button
-                    className="btn btn-warning btn-sm me-2"
-                    onClick={() => onEdit(p)}
-                  >
-                    Editar
-                  </button>
-                  <button
-                    className="btn btn-danger btn-sm"
-                    onClick={() => handleDelete(p.id)}
-                  >
-                    Eliminar
-                  </button>
+                  <div className="acciones">
+                    <button className="btn-editar" onClick={() => onEdit(p)}>
+                      ✏️ Editar
+                    </button>
+                    <button
+                      className="btn-eliminar"
+                      onClick={() => handleDelete(p.id)}
+                    >
+                      🗑️ Eliminar
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan={5} className="text-center">
+              <td colSpan={5} className="no-data">
                 No hay personas registradas
               </td>
             </tr>

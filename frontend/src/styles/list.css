@@ -1,0 +1,80 @@
+.persona-list-container {
+  background: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.persona-list-container h3 {
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #222;
+}
+
+.tabla-personas {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tabla-personas th {
+  background-color: #1976d2;
+  color: #fff;
+  text-align: center;
+  padding: 14px;
+  font-weight: 600;
+}
+
+.tabla-personas td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 15px;
+}
+
+.tabla-personas tr:hover {
+  background-color: #f5f7fa;
+  transition: background 0.2s ease;
+}
+
+.no-data {
+  text-align: center;
+  color: #777;
+  padding: 20px;
+}
+
+/* 🔹 Botones de acciones */
+.acciones {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+
+.btn-editar,
+.btn-eliminar {
+  padding: 8px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.btn-editar {
+  background-color: #1976d2;
+}
+
+.btn-editar:hover {
+  background-color: #125ea2;
+}
+
+.btn-eliminar {
+  background-color: #e53935;
+}
+
+.btn-eliminar:hover {
+  background-color: #c62828;
+}

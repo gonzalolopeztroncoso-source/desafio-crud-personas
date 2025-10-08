@@ -1,8 +1,10 @@
-const Home = () => (
-    <div style={{ textAlign: "center" }}>
-        <h2>Bienvenido a la página de inicio</h2>
-        <p>Usa el menu superior para navegar entre las secciones.</p>
+const Home = () => {
+  return (
+    <div>
+      <h2>Bienvenido 👋</h2>
+      <p>Usa el menú lateral para gestionar las personas.</p>
     </div>
-);
+  );
+};
 
 export default Home;

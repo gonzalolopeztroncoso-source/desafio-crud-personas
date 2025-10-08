@@ -1,21 +1,14 @@
-import './index.css'
-import NavBar from './components/NavBar.tsx'
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import Home from './pages/Home.tsx'
-import PersonasPage from './pages/PersonasPage.tsx'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./styles/styles.css";
+import "./styles/layout.css"; 
+import { ToastContainer } from 'react-toastify';
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <Router>
-      <NavBar />
-      <div style = {{ padding: "20px" }}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/personas" element={<PersonasPage />} />
-        </Routes>
-      </div>
-    </Router>
+    <App />
+    <ToastContainer position="top-right" autoClose={2500}/>
   </React.StrictMode>
-  );
+);
