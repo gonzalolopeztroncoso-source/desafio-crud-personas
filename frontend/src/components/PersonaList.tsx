@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { getPersonas, deletePersona } from "../api/personasApi";
 import "../styles/list.css";
-import { toast } from 'react-toastify';
 import Swal from "sweetalert2";
 
 interface PersonaListProps {
