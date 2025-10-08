@@ -4,14 +4,15 @@ import "../styles/form.css";
 import { toast } from "react-toastify";
 import { validate, format } from "rut.js";
 import { regiones } from "../data/regiones";
+import type { Persona, PersonaFormData } from "../types/Persona";
 
 interface PersonaFormProps {
   onPersonaAdded: () => void;
-  personaEdit?: any;
+  personaEdit?: Persona | null;
 }
 
 const PersonaForm = ({ onPersonaAdded, personaEdit }: PersonaFormProps) => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<PersonaFormData>({
     id: null,
     rut: "",
     nombre: "",
@@ -55,14 +56,6 @@ const PersonaForm = ({ onPersonaAdded, personaEdit }: PersonaFormProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const payload = {
-    rut: formData.rut,
-    nombre: formData.nombre,
-    apellido: formData.apellido,
-    fechaNacimiento: formData.fechaNacimiento,
-    direccion: formData.direccion,
-  };
-
     if (!validate(formData.rut)) {
       toast.warning("El RUT ingresado no es válido");
       return;
@@ -81,8 +74,8 @@ const PersonaForm = ({ onPersonaAdded, personaEdit }: PersonaFormProps) => {
     }
 
     try {
-      if (formData.id) {
-        await updatePersona(formData.id, payload);
+      if (formData.id !== null) {
+        await updatePersona(formData.id, formData);
         toast.success("Persona actualizada correctamente");
       } else {
         await savePersona(formData);

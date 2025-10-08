@@ -2,6 +2,8 @@ import { useState } from "react";
 import PersonaList from "../components/PersonaList";
 import PersonaForm from "../components/PersonaForm";
 import { useNavigate } from "react-router-dom";
+import type { Persona } from "../types/Persona";
+
 
 interface PersonasPageProps {
   isAdding?: boolean;
@@ -9,7 +11,7 @@ interface PersonasPageProps {
 
 const PersonasPage = ({ isAdding = false }: PersonasPageProps) => {
   const [reload, setReload] = useState(false);
-  const [editingPersona, setEditingPersona] = useState<any | null>(null);
+  const [editingPersona, setEditingPersona] = useState<Persona | null>(null);
   const navigate = useNavigate();
 
   const handlePersonaAdded = () => {
@@ -17,7 +19,7 @@ const PersonasPage = ({ isAdding = false }: PersonasPageProps) => {
     navigate("/personas"); // vuelve al listado después de guardar
   };
 
-  const handleEdit = (persona: any) => {
+  const handleEdit = (persona: Persona) => {
     setEditingPersona(persona);
     navigate("/personas/agregar"); // redirige al formulario de edición
   };

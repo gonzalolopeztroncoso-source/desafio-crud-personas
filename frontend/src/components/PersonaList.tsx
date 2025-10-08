@@ -2,14 +2,15 @@ import { useEffect, useState } from "react";
 import { getPersonas, deletePersona } from "../api/personasApi";
 import "../styles/list.css";
 import Swal from "sweetalert2";
+import type { Persona } from "../types/Persona";
 
 interface PersonaListProps {
   reload: boolean;
-  onEdit: (persona: any) => void;
+  onEdit: (persona: Persona) => void;
 }
 
 const PersonaList = ({ reload, onEdit }: PersonaListProps) => {
-  const [personas, setPersonas] = useState<any[]>([]);
+  const [personas, setPersonas] = useState<Persona[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
